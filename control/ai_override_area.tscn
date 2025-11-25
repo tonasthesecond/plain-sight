@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cumjcfxp2wngg"]
+
+[ext_resource type="Script" uid="uid://b0tuclxh6j4eg" path="res://control/ai_override_area.gd" id="1_tp1pt"]
+
+[node name="AIOverrideArea" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_tp1pt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+debug_color = Color(0.657527, 0.515848, 0.0107253, 0.42)

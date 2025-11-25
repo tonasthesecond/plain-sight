@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://voersvek38s5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_twkyj"]
+radius = 3.0
+height = 10.0
+
+[node name="PlayerCollisionShape" type="CollisionShape2D"]
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_twkyj")

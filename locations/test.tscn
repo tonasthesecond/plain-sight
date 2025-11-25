@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://dvnlurpwjhrrl"]
+
+[ext_resource type="Texture2D" uid="uid://b351ldvo2ag33" path="res://assets/island.png" id="1_27d84"]
+[ext_resource type="PackedScene" uid="uid://im7dvn01s5ui" path="res://objects/player.tscn" id="1_oleha"]
+[ext_resource type="Texture2D" uid="uid://bwt2erriwhn8r" path="res://assets/island_rock1.png" id="7_vrvk6"]
+[ext_resource type="Texture2D" uid="uid://bvmiw32468fkt" path="res://assets/island_rock2.png" id="8_t1ccm"]
+[ext_resource type="PackedScene" uid="uid://rkwwxwhv731h" path="res://control/spawn_manager.tscn" id="9_e6lle"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n41au"]
+atlas = ExtResource("7_vrvk6")
+region = Rect2(106, 115, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fadxy"]
+atlas = ExtResource("8_t1ccm")
+region = Rect2(161, 61, 19, 14)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tn7wg"]
+radius = 3.00001
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fg3w2"]
+radius = 3.00001
+height = 20.0
+
+[node name="Test" type="CanvasGroup"]
+y_sort_enabled = true
+
+[node name="SpawnManager" parent="." node_paths=PackedStringArray("bystander_canvas_group") instance=ExtResource("9_e6lle")]
+number_of_bystanders = 100
+bystander_canvas_group = NodePath("../Bystanders")
+
+[node name="Textures" type="CanvasGroup" parent="."]
+y_sort_enabled = true
+
+[node name="Background" type="Sprite2D" parent="Textures"]
+texture = ExtResource("1_27d84")
+centered = false
+
+[node name="IslandRock1" type="Sprite2D" parent="Textures"]
+y_sort_enabled = true
+position = Vector2(115, 123)
+texture = SubResource("AtlasTexture_n41au")
+
+[node name="IslandRock2" type="Sprite2D" parent="Textures"]
+y_sort_enabled = true
+position = Vector2(170.5, 68)
+texture = SubResource("AtlasTexture_fadxy")
+
+[node name="Players" type="CanvasGroup" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="Players" instance=ExtResource("1_oleha")]
+position = Vector2(122, 75)
+
+[node name="Player2" parent="Players" instance=ExtResource("1_oleha")]
+position = Vector2(118, 146)
+scale = Vector2(0.989902, 1)
+player_id = "player2"
+
+[node name="Bystanders" type="CanvasGroup" parent="."]
+y_sort_enabled = true
+
+[node name="AIOverrideAreas" type="Node" parent="."]
+
+[node name="Collisions" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions"]
+position = Vector2(39, 54)
+polygon = PackedVector2Array(0, 0, 10, -3, 34, -11, 60, -29, 81, -44, 96, -48, 118, -52, -39, -54, -39, 195, 281, 196, 281, -54, -39, -54, 118, -52, 180, -51, 211, -50, 230, -39, 239, -27, 256, 0, 265, 25, 265, 37, 258, 48, 251, 53, 225, 55, 219, 57, 216, 60, 215, 64, 214, 68, 213, 70, 212, 83, 204, 98, 194, 107, 186, 110, 175, 112, 159, 114, 144, 116, 134, 120, 131, 122, 131, 127, 133, 132, 142, 135, 157, 137, 181, 140, 188, 144, 202, 157, 204, 164, 206, 167, 186, 173, 167, 177, 133, 177, 94, 174, 65, 169, 47, 158, 36, 149, 12, 111, -4, 87, -7, 82, -8, 61, -21, 46, -21, 32, -16, 15, -11, 7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions"]
+position = Vector2(115, 127)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_tn7wg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Collisions"]
+position = Vector2(171, 71)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_fg3w2")

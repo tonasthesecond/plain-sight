@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://rkwwxwhv731h"]
+
+[ext_resource type="Script" uid="uid://cbv4x8pjvygav" path="res://control/spawn_manager.gd" id="1_lnem2"]
+[ext_resource type="PackedScene" uid="uid://voersvek38s5" path="res://objects/components/player_collision_shape.tscn" id="2_88ry1"]
+
+[node name="SpawnManager" type="Node"]
+script = ExtResource("1_lnem2")
+
+[node name="ValidationArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="PlayerCollisionShape" parent="ValidationArea" instance=ExtResource("2_88ry1")]

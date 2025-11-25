@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj7yt7xxwc7uc"]
+
+[ext_resource type="Script" uid="uid://b8tbki7eaxf68" path="res://objects/components/damage_area_component.gd" id="1_c8soy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vslo8"]
+radius = 5.0
+height = 14.0
+
+[node name="DamageAreaComponent" type="Area2D"]
+visible = false
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_c8soy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_vslo8")
+debug_color = Color(0.970427, 0.161357, 0.15484, 0.42)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
