@@ -1,7 +1,11 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bmwwt5866dqt0"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bmwwt5866dqt0"]
+
+[ext_resource type="FontFile" uid="uid://dkbc5oxbd6trk" path="res://assets/m5x7.ttf" id="1_g1fjd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nsae5"]
 bg_color = Color(0.318019, 0.469218, 0.722851, 1)
 
 [resource]
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_g1fjd")
 Panel/styles/panel = SubResource("StyleBoxFlat_nsae5")

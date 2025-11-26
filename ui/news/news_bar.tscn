@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfm3v06c488ce"]
+
+[ext_resource type="Script" uid="uid://do5qblukeoc1p" path="res://ui/news/message_bar.gd" id="1_g6uww"]
+[ext_resource type="Theme" uid="uid://bmwwt5866dqt0" path="res://ui/main_theme.tres" id="1_ln0bj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ln0bj"]
+font_size = 10
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="MessageBar" type="CenterContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 9.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource("1_g6uww")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("1_ln0bj")
+text = "This is taking a while..."
+label_settings = SubResource("LabelSettings_ln0bj")
+
+[node name="IdleTimer" type="Timer" parent="."]
+one_shot = true
