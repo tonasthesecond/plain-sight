@@ -1,12 +1,15 @@
 [gd_scene load_steps=9 format=3 uid="uid://c7jv8e4j0u13p"]
 
 [ext_resource type="Script" uid="uid://boyp3xheobxad" path="res://objects/bystander.gd" id="1_tb0sd"]
-[ext_resource type="Resource" uid="uid://ctusl2g0fcy7b" path="res://scripts/ais/basic.tres" id="2_be28u"]
-[ext_resource type="PackedScene" uid="uid://csasurdk11hx5" path="res://objects/components/movement_component.tscn" id="3_yplyb"]
+[ext_resource type="Script" uid="uid://bh1nf7ornt2n1" path="res://scripts/ais/base_ai_type.gd" id="2_1qrs5"]
 [ext_resource type="PackedScene" uid="uid://stcqnyvhg6jt" path="res://objects/components/animation_component.tscn" id="4_mgoxg"]
 [ext_resource type="Texture2D" uid="uid://7o26uwyl308w" path="res://assets/pawn.png" id="4_pvv41"]
 [ext_resource type="PackedScene" uid="uid://cj7yt7xxwc7uc" path="res://objects/components/damage_area_component.tscn" id="6_j1jkn"]
 [ext_resource type="PackedScene" uid="uid://voersvek38s5" path="res://objects/components/player_collision_shape.tscn" id="7_ftk14"]
+
+[sub_resource type="Resource" id="Resource_63624"]
+script = ExtResource("2_1qrs5")
+metadata/_custom_type_script = "uid://bh1nf7ornt2n1"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w3xn0"]
 animations = [{
@@ -23,7 +26,7 @@ animations = [{
 collision_layer = 64
 collision_mask = 18
 script = ExtResource("1_tb0sd")
-ai_type = ExtResource("2_be28u")
+ai_type = SubResource("Resource_63624")
 
 [node name="PlayerCollisionShape" parent="." instance=ExtResource("7_ftk14")]
 
@@ -35,18 +38,15 @@ collision_mask = 8
 [node name="PlayerCollisionShape" parent="AIOverrideDetector" instance=ExtResource("7_ftk14")]
 debug_color = Color(0.636139, 0.526786, 1.92523e-07, 0.42)
 
-[node name="WalkTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="WaitTimer" type="Timer" parent="."]
-one_shot = true
-
 [node name="AnimationComponent" parent="." instance=ExtResource("4_mgoxg")]
 sprite_frames = SubResource("SpriteFrames_w3xn0")
 
 [node name="DamageAreaComponent" parent="." instance=ExtResource("6_j1jkn")]
 
-[node name="MovementComponent" parent="." instance=ExtResource("3_yplyb")]
+[node name="MoveTimer" type="Timer" parent="."]
+one_shot = true
 
-[connection signal="timeout" from="WalkTimer" to="." method="_on_walk_timer_timeout"]
+[node name="IdleTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="damaged" from="DamageAreaComponent" to="." method="_on_damage_area_component_damaged"]

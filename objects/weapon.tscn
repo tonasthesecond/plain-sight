@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cs6x56chh1syx" path="res://assets/knife.png" id="2_l8l68"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5rtwx"]
-size = Vector2(12, 6)
+size = Vector2(12, 4)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dtd0q"]
 animations = [{

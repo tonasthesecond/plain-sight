@@ -2,14 +2,14 @@ extends Resource
 class_name AIMovementPackage
 
 var direction: Vector2 = Vector2.ZERO
-var walk_time: float = 0.0
-var wait_time: float = 0.0
+var move_time: float = 0.0
+var idle_time: float = 0.0
 
 func _init(
-    _direction: Vector2 = Vector2.ZERO,
-    _walk_time: float = 0.0,
-    _wait_time: float = 0.0
+    _direction: Vector2 = direction,
+    _move_time: float = move_time,
+    _idle_time: float = idle_time
 ) -> void:
     direction = _direction
-    walk_time = _walk_time
-    wait_time = _wait_time
+    move_time = _move_time
+    idle_time = _idle_time

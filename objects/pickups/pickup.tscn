@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://3uwvylfl8q71"]
+[gd_scene load_steps=6 format=3 uid="uid://3uwvylfl8q71"]
 
 [ext_resource type="Script" uid="uid://420x8g51ny2r" path="res://objects/pickups/pickup_object.gd" id="1_wyobh"]
 [ext_resource type="PackedScene" uid="uid://stcqnyvhg6jt" path="res://objects/components/animation_component.tscn" id="2_37v0h"]
-[ext_resource type="Resource" uid="uid://r4rco15db48" path="res://scripts/pickups/increased_speed.tres" id="2_veqa6"]
 [ext_resource type="Texture2D" uid="uid://ic1ebsdlu2rl" path="res://assets/pickup_questionmark.png" id="3_scjrl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_aumkm"]
@@ -21,7 +20,6 @@ radius = 16.0
 
 [node name="Pickup" type="Node2D"]
 script = ExtResource("1_wyobh")
-pickup = ExtResource("2_veqa6")
 
 [node name="AnimationComponent" parent="." instance=ExtResource("2_37v0h")]
 sprite_frames = SubResource("SpriteFrames_aumkm")

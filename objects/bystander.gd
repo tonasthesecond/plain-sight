@@ -2,58 +2,62 @@ extends CharacterBody2D
 class_name Bystander
 
 @export var ai_type: AIType
+
 @onready var ai_override_detector: Area2D = $AIOverrideDetector
-@onready var walk_timer: Timer = $WalkTimer
-@onready var wait_timer: Timer = $WaitTimer
-@onready var movement_component: MovementComponent = $MovementComponent
 @onready var animation_component: AnimationComponent = $AnimationComponent
+@onready var move_timer: Timer = $MoveTimer
+@onready var idle_timer: Timer = $IdleTimer
 
-var movement_package: AIMovementPackage
-
+var ai_movement_provider: AIMovementProvider
 var ai_select_trials_limit: int = 10
+var state_machine: StateMachine
 
-func _physics_process(_delta: float) -> void:
-    # If stopped waiting and walking, get new instructions from AI
-    if walk_timer.is_stopped() and wait_timer.is_stopped():
-        
-        var valid_move: bool = false
-        while not valid_move:
-            # Get random AI
-            var chosen_ai_type: AIType = select_random_ai_type()
+var move_state: MoveState
 
-            # Make sure the direction chosen has no collision
-            var ai_select_trials_count: int = 0
-            movement_package = chosen_ai_type.get_movement_package()
-            while movement_component.move(movement_package.direction) and ai_select_trials_count <= ai_select_trials_limit:
-                movement_package = chosen_ai_type.get_movement_package()
-                ai_select_trials_count += 1
-            
-            # Check whether a valid move was chosen, else, repeat AI selection
-            valid_move = ai_select_trials_count <= ai_select_trials_limit
+func _ready() -> void:
+    ai_movement_provider = AIMovementProvider.new(
+        self,
+        ai_type, 
+        move_timer,
+        )
 
-        # Start moving
-        walk_timer.start(movement_package.walk_time)
+    move_state = MoveState.new(Settings.WALK_SPEED, ai_movement_provider)
+    var anim_move_state = AnimatedState.new(
+        move_state,
+        "", "walk", "",
+        animation_component
+        )
+    var anim_idle_state := AnimatedState.new(
+        IdleState.new(), 
+        "", "default", "", 
+        animation_component
+        ) 
 
-    # When moving
-    if not walk_timer.is_stopped():
-        var collided = movement_component.move(movement_package.direction)
+    state_machine = StateMachine.new()
+    state_machine.init(
+        self, [anim_idle_state, anim_move_state],
+        func(): 
+            return {
+                "is_moving": not move_timer.is_stopped(),
+                "is_idling": not idle_timer.is_stopped(),
+            },
+        [
+            StateTransition.new(anim_move_state, anim_idle_state, ["is_idling"]), 
+            StateTransition.new(anim_idle_state, anim_move_state, ["is_moving"])
+        ]
+        )
 
-        # If collides then stop moving
-        if collided: 
-            walk_timer.stop()
-            _on_walk_timer_timeout()
-    
-    else: move_and_collide(Vector2.ZERO) # This is to keep the collision active and working
-    
-    # Animate
-    if movement_package.direction.length() > 0:
-        animation_component.play_animation("walk")
-    else:
-        animation_component.play_animation("idle")
-    
-func _on_walk_timer_timeout() -> void:
-    wait_timer.start(movement_package.wait_time)
-    movement_package.direction = Vector2.ZERO
+    move_timer.timeout.connect(func(): idle_timer.start(ai_type.get_movement_package().idle_time))
+    idle_timer.timeout.connect(func(): move_timer.start(ai_type.get_movement_package().move_time))
+    move_timer.start(Settings.AI_WALK_TIME_BOUNDS.y * randf_range(0.0, 2.0))
+
+func _physics_process(delta: float) -> void:
+    state_machine.physics_process(delta)
+    ai_movement_provider = AIMovementProvider.new(
+        self,
+        select_random_ai_type(), 
+        move_timer, 
+        )
 
 func _on_damage_area_component_damaged() -> void:
     set_physics_process(false)
@@ -65,14 +69,14 @@ func _on_damage_area_component_damaged() -> void:
 func select_random_ai_type() -> AIType:
     # Get current AIMovementPackage provider options
     var ai_provider_options: Array[AIType]
+    var weights: Array[float]
+
     for area in ai_override_detector.get_overlapping_areas():
-        if area is AIOverrideArea:
-            for iteration in range(area.probability * 10):
-                ai_provider_options.append(area.ai_type)
+        if not area is AIOverrideArea: continue
+        ai_provider_options.append(area.ai_type)
+        weights.append(area.weight)
     
     ai_provider_options.append(ai_type) # Append default AI so it doesn't get stuck
-    # Fill with default AI if not enough overrides
-    while ai_provider_options.size() < 10:
-        ai_provider_options.append(ai_type)
+    weights.append(1.0)
 
-    return ai_provider_options[randi() % ai_provider_options.size()]
+    return Utils.select_random_item(ai_provider_options, weights)

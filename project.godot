@@ -19,8 +19,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Settings="*res://scripts/globals/settings.gd"
-References="*res://scripts/globals/references.gd"
-Functions="*res://scripts/globals/functions.gd"
+Refs="*res://scripts/globals/references.gd"
+Utils="*res://scripts/globals/utilities.gd"
 
 [display]
 
@@ -29,7 +29,6 @@ window/size/viewport_height=240
 window/size/window_width_override=1280
 window/size/window_height_override=960
 window/stretch/mode="canvas_items"
-window/stretch/scale_mode="integer"
 
 [dotnet]
 

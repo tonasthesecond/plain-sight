@@ -1,0 +1,88 @@
+[gd_scene load_steps=16 format=3 uid="uid://t0u8aq8n3xem"]
+
+[ext_resource type="Script" uid="uid://cbv4x8pjvygav" path="res://control/spawn_manager.gd" id="1_ce3x7"]
+[ext_resource type="Script" uid="uid://b8v4umrbvl4d4" path="res://scripts/ais/ai_type.gd" id="2_abgyh"]
+[ext_resource type="Texture2D" uid="uid://djujw41xltraj" path="res://assets/isometric_forest.png" id="2_forvw"]
+[ext_resource type="PackedScene" uid="uid://3uwvylfl8q71" path="res://objects/pickups/pickup.tscn" id="3_dmytl"]
+[ext_resource type="Script" uid="uid://bh1nf7ornt2n1" path="res://scripts/ais/base_ai_type.gd" id="3_v1qeb"]
+[ext_resource type="Script" uid="uid://d4nec1n7leehq" path="res://scripts/ais/variable_wait_time_ai_type.gd" id="4_ud5f2"]
+[ext_resource type="Script" uid="uid://cvyb5fppybqeo" path="res://scripts/ais/variable_move_time_ai_type.gd" id="5_53fq4"]
+[ext_resource type="PackedScene" uid="uid://g4jiu0ybw782" path="res://ui/death_screen.tscn" id="8_jbgc5"]
+
+[sub_resource type="Resource" id="Resource_2j3ec"]
+script = ExtResource("3_v1qeb")
+metadata/_custom_type_script = "uid://bh1nf7ornt2n1"
+
+[sub_resource type="Resource" id="Resource_tfqal"]
+script = ExtResource("4_ud5f2")
+time_multiplier = Vector2(0.2, 0.2)
+metadata/_custom_type_script = "uid://d4nec1n7leehq"
+
+[sub_resource type="Resource" id="Resource_8y26k"]
+script = ExtResource("5_53fq4")
+time_multiplier = Vector2(0.8, 0.8)
+metadata/_custom_type_script = "uid://cvyb5fppybqeo"
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ybf63"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r5kv4"]
+normal = Vector2(0, 1)
+distance = 10.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_dph0w"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u3sj2"]
+normal = Vector2(-1, 0)
+
+[node name="Room" type="Node2D"]
+y_sort_enabled = true
+
+[node name="SpawnManager" type="Node" parent="." node_paths=PackedStringArray("characters_container")]
+script = ExtResource("1_ce3x7")
+characters_container = NodePath("../Characters")
+possible_ai = Array[ExtResource("2_abgyh")]([SubResource("Resource_2j3ec"), SubResource("Resource_tfqal"), SubResource("Resource_8y26k")])
+metadata/_custom_type_script = "uid://cbv4x8pjvygav"
+
+[node name="Textures" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="Sprite2D" parent="Textures"]
+texture = ExtResource("2_forvw")
+centered = false
+
+[node name="Characters" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="AIOverrideAreas" type="Node" parent="."]
+
+[node name="Pickups" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Pickup" parent="Pickups" instance=ExtResource("3_dmytl")]
+position = Vector2(159, 134)
+
+[node name="Collisions" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="WorldBorders" type="CollisionShape2D" parent="Collisions"]
+shape = SubResource("WorldBoundaryShape2D_ybf63")
+
+[node name="WorldBorders2" type="CollisionShape2D" parent="Collisions"]
+position = Vector2(0, 1)
+shape = SubResource("WorldBoundaryShape2D_r5kv4")
+
+[node name="WorldBorders3" type="CollisionShape2D" parent="Collisions"]
+position = Vector2(320, 240)
+shape = SubResource("WorldBoundaryShape2D_dph0w")
+
+[node name="WorldBorders4" type="CollisionShape2D" parent="Collisions"]
+position = Vector2(320, 240)
+shape = SubResource("WorldBoundaryShape2D_u3sj2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="DeathScreen" parent="UI" instance=ExtResource("8_jbgc5")]

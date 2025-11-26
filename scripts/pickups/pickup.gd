@@ -1,7 +1,4 @@
+@abstract class_name Pickup
 extends Resource
-class_name Pickup
 
-func pick_up(_player: Player) -> void:
-    pass
-
-
+@abstract func pick_up(_player: Player) -> void
