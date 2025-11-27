@@ -15,7 +15,6 @@ var move_state: MoveState
 
 func _ready() -> void:
     state_machine = StateMachine.new()
-
     move_state = MoveState.new(Settings.WALK_SPEED, PlayerInputMovementProvider.new(player_id))
     
     var anim_move_state = AnimatedState.new(
@@ -40,6 +39,8 @@ func _ready() -> void:
         ]
     )
 
+    animation_component.modulate = Utils.get_random_predefined_color()
+
 func _physics_process(delta: float) -> void:
     state_machine.physics_process(delta)
 
@@ -54,6 +55,6 @@ func _physics_process(delta: float) -> void:
         weapon_instance.rotation = previous_direction.angle()
         add_child(weapon_instance)
 
-func _on_damage_area_component_damaged() -> void:
+func _on_damage_area_component_damaged(_damager: Node2D) -> void:
     print(player_id + " died")
     died.emit()

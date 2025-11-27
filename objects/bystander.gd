@@ -47,6 +47,8 @@ func _ready() -> void:
         ]
         )
 
+    animation_component.modulate = Utils.get_random_predefined_color()
+
     move_timer.timeout.connect(func(): idle_timer.start(ai_type.get_movement_package().idle_time))
     idle_timer.timeout.connect(func(): move_timer.start(ai_type.get_movement_package().move_time))
     move_timer.start(Settings.AI_WALK_TIME_BOUNDS.y * randf_range(0.0, 2.0))
@@ -59,7 +61,7 @@ func _physics_process(delta: float) -> void:
         move_timer, 
         )
 
-func _on_damage_area_component_damaged() -> void:
+func _on_damage_area_component_damaged(_damager: Node2D) -> void:
     set_physics_process(false)
 
     animation_component.stop_animation()

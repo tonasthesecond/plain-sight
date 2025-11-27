@@ -15,7 +15,7 @@ func get_colliders_from_object(object: CollisionObject2D) -> Array[Dictionary]:
 func get_random_color() -> Color:
     return Color(randf(), randf(), randf(), 1.0)
 
-func select_random_item(items: Array, weights: Array = []) -> Object:
+func select_random_item(items: Array, weights: Array = []) -> Variant:
     if weights.size() == 0:
         return items[randi() % items.size()]
 
@@ -44,3 +44,6 @@ func get_random_integer_direction() -> Vector2:
 
 func standard_lerp(start: Variant, end: Variant, smoothing: float, delta: float) -> Variant:
     return lerp(start, end, 1 - exp(-smoothing * delta)) # This is framerate independent
+
+func get_random_predefined_color() -> Color:
+    return select_random_item(Settings.PREDEFINED_COLORS)

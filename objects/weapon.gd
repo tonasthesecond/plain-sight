@@ -1,9 +1,8 @@
-extends Area2D
 class_name Weapon
+extends Area2D
 
 @onready var animation_component: AnimationComponent = $AnimationComponent
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
-
 
 func _ready() -> void:
     animation_component.play_animation("attack")
@@ -11,9 +10,10 @@ func _ready() -> void:
         func(): 
             # Damage closest damageable object
             await get_tree().physics_frame
-            var closest_damage_area: Area2D = get_closest_area(get_overlapping_areas())
+            
+            var closest_damage_area: DamageAreaComponent = get_closest_damage_component(get_overlapping_bodies())
             if closest_damage_area is DamageAreaComponent:
-                closest_damage_area.damaged.emit()
+                closest_damage_area.damage(get_parent())
 
             get_tree().create_tween().tween_property(
                 self, 
@@ -23,16 +23,16 @@ func _ready() -> void:
                 ).finished.connect(queue_free)
     )
 
-func get_closest_area(areas: Array[Area2D]) -> Area2D:
-    if areas.size() == 0: return null
+func get_closest_damage_component(bodies: Array[Node2D]) -> DamageAreaComponent:
+    if bodies.size() == 0: return null
 
-    var closest_area: Area2D = areas[0]
-    var closest_distance: float = areas[0].global_position.distance_to(global_position)
+    var closest_body: Node2D = bodies[0]
+    var closest_distance: float = bodies[0].global_position.distance_to(global_position)
 
-    for area in areas:
-        var distance: float = area.global_position.distance_to(global_position)
+    for body in bodies:
+        var distance: float = body.global_position.distance_to(global_position)
         if distance < closest_distance:
             closest_distance = distance
-            closest_area = area
+            closest_body = body
 
-    return closest_area
+    return closest_body

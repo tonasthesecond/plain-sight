@@ -1,7 +1,7 @@
-extends Area2D
 class_name DamageAreaComponent
+extends StaticBody2D
 
-signal damaged
+signal damaged(damager: Node)
 
-func _on_body_entered(_body: Node2D) -> void:
-    damaged.emit()
+func damage(damager: Node) -> void:
+    damaged.emit(damager)

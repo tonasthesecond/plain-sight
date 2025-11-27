@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfm3v06c488ce"]
 
-[ext_resource type="Script" uid="uid://do5qblukeoc1p" path="res://ui/news/message_bar.gd" id="1_g6uww"]
+[ext_resource type="Script" uid="uid://do5qblukeoc1p" path="res://ui/messages/message_bar.gd" id="1_g6uww"]
 [ext_resource type="Theme" uid="uid://bmwwt5866dqt0" path="res://ui/main_theme.tres" id="1_ln0bj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ln0bj"]

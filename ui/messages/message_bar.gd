@@ -4,11 +4,11 @@ extends Node
 @onready var label: Label = $Label
 @onready var idle_timer: Timer = $IdleTimer
 
-const OPACITY_CHANGE_RATE: float = 0.5 # Opacity change per second
-const IDLE_TIME: float = 2
+const OPACITY_CHANGE_RATE: float = 1 # Opacity change per second
+const IDLE_TIME: float = 3
 
-var queue: Array[String] = ["Hello it's me!", "Hey, this is still me!", "I'm still here!"]
-var priority_queue: Array[String] = ["Urgent message!"]
+@export var queue: Array[String] = []
+@export var priority_queue: Array[String] = []
 
 var opacity_tween: Tween
 
@@ -28,7 +28,7 @@ func queue_message(message: String) -> void:
 func queue_priority_message(message: String) -> void:
     priority_queue.push_back(message)
 
-func show_message(message: String) -> void:
+func show_message(message: String, priority: bool = false) -> void:
     # Hide current text
     if label.modulate.a > 0:
         opacity_tween = create_tween()
@@ -41,6 +41,13 @@ func show_message(message: String) -> void:
 
     # Change and show new text
     label.text = message
+
+    if priority:
+        label.modulate = Color.RED
+    else:
+        label.modulate = Color.WHITE
+    label.modulate.a = 0
+
     opacity_tween = create_tween()
     opacity_tween.tween_property(
         label, "modulate:a", 

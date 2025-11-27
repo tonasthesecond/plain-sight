@@ -11,10 +11,10 @@ config_version=5
 [application]
 
 config/name="Plain Sight"
-run/main_scene="res://locations/room.tscn"
+run/main_scene="uid://t0u8aq8n3xem"
 config/features=PackedStringArray("4.5", "Forward Plus")
 run/max_fps=60
-config/icon="res://icon.svg"
+config/icon="uid://ic1ebsdlu2rl"
 
 [autoload]
 
