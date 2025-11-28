@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://dvnlurpwjhrrl"]
 
-[ext_resource type="Texture2D" uid="uid://b351ldvo2ag33" path="res://assets/island.png" id="1_27d84"]
-[ext_resource type="PackedScene" uid="uid://im7dvn01s5ui" path="res://objects/player.tscn" id="1_oleha"]
-[ext_resource type="Texture2D" uid="uid://bwt2erriwhn8r" path="res://assets/island_rock1.png" id="7_vrvk6"]
-[ext_resource type="Texture2D" uid="uid://bvmiw32468fkt" path="res://assets/island_rock2.png" id="8_t1ccm"]
-[ext_resource type="PackedScene" uid="uid://rkwwxwhv731h" path="res://control/spawn_manager.tscn" id="9_e6lle"]
+[ext_resource type="Texture2D" uid="uid://b351ldvo2ag33" path="res://assets/locations/island.png" id="1_27d84"]
+[ext_resource type="PackedScene" uid="uid://im7dvn01s5ui" path="res://characters/player.tscn" id="1_oleha"]
+[ext_resource type="Texture2D" uid="uid://bwt2erriwhn8r" path="res://assets/objects/island_rock1.png" id="7_vrvk6"]
+[ext_resource type="Texture2D" uid="uid://bvmiw32468fkt" path="res://assets/objects/island_rock2.png" id="8_t1ccm"]
+[ext_resource type="PackedScene" path="res://control/spawn_manager.tscn" id="9_e6lle"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n41au"]
 atlas = ExtResource("7_vrvk6")

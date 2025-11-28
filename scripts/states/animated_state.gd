@@ -14,11 +14,11 @@ func _init(
     _enter_animation_name: String = enter_animation_name,
     _process_animation_name: String = process_animation_name,
     _exit_animation_name: String = exit_animation_name,
-    _animation_component: AnimationComponent = null,
+    _animation_player: AnimationComponent = null,
     _directional_movement_provider: MovementProvider = null,
 ) -> void:
     wrapped_state = _wrapped_state
-    animation_component = _animation_component
+    animation_component = _animation_player
     process_animation_name = _process_animation_name
     enter_animation_name = _enter_animation_name
     exit_animation_name = _exit_animation_name

@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://bh1nf7ornt2n1" path="res://scripts/ais/base_ai_type.gd" id="4_elkg1"]
 [ext_resource type="Script" uid="uid://d4nec1n7leehq" path="res://scripts/ais/variable_wait_time_ai_type.gd" id="5_k881l"]
 [ext_resource type="Script" uid="uid://cvyb5fppybqeo" path="res://scripts/ais/variable_move_time_ai_type.gd" id="6_nxkcx"]
-[ext_resource type="Texture2D" uid="uid://djujw41xltraj" path="res://assets/isometric_forest.png" id="7_hjwot"]
-[ext_resource type="PackedScene" uid="uid://bmrhowg1q8o43" path="res://objects/pickups/pickup_spawn.tscn" id="8_k881l"]
+[ext_resource type="Texture2D" uid="uid://djujw41xltraj" path="res://assets/locations/isometric_forest.png" id="7_hjwot"]
+[ext_resource type="PackedScene" uid="uid://bmrhowg1q8o43" path="res://pickups/pickup_spawn.tscn" id="8_k881l"]
 [ext_resource type="Script" uid="uid://cartteryp2v0n" path="res://scripts/pickups/speed_change_pickup.gd" id="9_elkg1"]
 [ext_resource type="Script" uid="uid://bdmsbku7o6t0t" path="res://scripts/pickups/pickup.gd" id="9_nxkcx"]
 [ext_resource type="PackedScene" uid="uid://g4jiu0ybw782" path="res://ui/death_screen.tscn" id="9_ymjlx"]
@@ -71,7 +71,7 @@ y_sort_enabled = true
 y_sort_enabled = true
 
 [node name="PickupSpawn" parent="PickupSpawns" instance=ExtResource("8_k881l")]
-position = Vector2(161, 136)
+position = Vector2(162, 136)
 possible_spawns = Array[ExtResource("9_nxkcx")]([SubResource("Resource_hjwot")])
 
 [node name="Collisions" type="StaticBody2D" parent="."]

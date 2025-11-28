@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://g4jiu0ybw782"]
 
 [ext_resource type="Theme" uid="uid://bmwwt5866dqt0" path="res://ui/main_theme.tres" id="1_edlcn"]
-[ext_resource type="Texture2D" uid="uid://7o26uwyl308w" path="res://assets/pawn.png" id="2_nbhwf"]
-[ext_resource type="Texture2D" uid="uid://cs6x56chh1syx" path="res://assets/knife.png" id="3_u1n60"]
+[ext_resource type="Texture2D" uid="uid://7o26uwyl308w" path="res://assets/characters/pawn.png" id="2_nbhwf"]
+[ext_resource type="Texture2D" uid="uid://cs6x56chh1syx" path="res://assets/weapon/knife.png" id="3_u1n60"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1c0t"]
 bg_color = Color(0.910988, 0.43456, 0.39139, 1)

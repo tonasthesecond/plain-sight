@@ -47,3 +47,15 @@ func standard_lerp(start: Variant, end: Variant, smoothing: float, delta: float)
 
 func get_random_predefined_color() -> Color:
     return select_random_item(Settings.PREDEFINED_COLORS)
+
+func vector_direction_to_string(vector: Vector2) -> String:
+    if vector.x > 0:
+        return "right"
+    elif vector.x < 0:
+        return "left"
+    elif vector.y > 0:
+        return "down"
+    elif vector.y < 0:
+        return "up"
+    else:
+        return ''

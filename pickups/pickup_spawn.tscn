@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmrhowg1q8o43"]
+
+[ext_resource type="Script" uid="uid://d848rdflm8qi" path="res://pickups/pickup_spawn.gd" id="1_q83sg"]
+
+[node name="PickupSpawn" type="Node2D"]
+script = ExtResource("1_q83sg")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+one_shot = true

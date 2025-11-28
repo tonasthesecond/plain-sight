@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://e5nie8wuhhuy"]
+
+[ext_resource type="Script" uid="uid://420x8g51ny2r" path="res://pickups/pickup_object.gd" id="1_u5cw6"]
+[ext_resource type="Texture2D" uid="uid://ic1ebsdlu2rl" path="res://assets/pickups/pickup_questionmark.png" id="3_7fn83"]
+[ext_resource type="AnimationLibrary" uid="uid://567ra8wo1qxw" path="res://assets/animations/pickup_animations.res" id="4_6mu2i"]
+[ext_resource type="PackedScene" uid="uid://cj7yt7xxwc7uc" path="res://components/damage_area_component.tscn" id="4_lcbsu"]
+[ext_resource type="Script" uid="uid://b88ojtwt7ji0o" path="res://components/animation_component.gd" id="5_c3a2f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lcbsu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u3l20"]
+radius = 16.0
+
+[node name="PickupObject" type="Node2D"]
+script = ExtResource("1_u5cw6")
+metadata/_custom_type_script = "uid://420x8g51ny2r"
+
+[node name="DamageAreaComponent" parent="." instance=ExtResource("4_lcbsu")]
+
+[node name="CollisionShape2D" parent="DamageAreaComponent" index="0"]
+shape = SubResource("CircleShape2D_lcbsu")
+
+[node name="PickupArea" type="Area2D" parent="."]
+rotation = -0.0141855
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+visible = false
+shape = SubResource("CircleShape2D_u3l20")
+debug_color = Color(0.869952, 0.000505758, 0.850214, 0.42)
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_7fn83")
+
+[node name="AnimationComponent" type="AnimationPlayer" parent="."]
+libraries = {
+&"pickup_animations": ExtResource("4_6mu2i")
+}
+script = ExtResource("5_c3a2f")
+metadata/_custom_type_script = "uid://b88ojtwt7ji0o"
+
+[editable path="DamageAreaComponent"]
