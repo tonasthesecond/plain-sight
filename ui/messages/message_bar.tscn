@@ -20,7 +20,6 @@ script = ExtResource("1_g6uww")
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 theme = ExtResource("1_ln0bj")
-text = "This is taking a while..."
 label_settings = SubResource("LabelSettings_ln0bj")
 
 [node name="IdleTimer" type="Timer" parent="."]

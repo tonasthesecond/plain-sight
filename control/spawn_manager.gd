@@ -24,8 +24,8 @@ func _ready() -> void:
         spawn_bystander()
 
     # Spawn players
-    spawn_player("player1")
-    spawn_player("player2")
+    spawn_player(0)
+    spawn_player(1)
     
 func spawn_bystander() -> void:
     # Create new bystander with random AI
@@ -36,7 +36,7 @@ func spawn_bystander() -> void:
     new_bystander.position = get_valid_position()
     characters_container.add_child(new_bystander)
 
-func spawn_player(player_id: String) -> void:
+func spawn_player(player_id: int) -> void:
     # Create new player with id
     var new_player: Player = player_scene.instantiate()
     new_player.player_id = player_id

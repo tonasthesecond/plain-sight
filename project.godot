@@ -21,6 +21,7 @@ config/icon="uid://ic1ebsdlu2rl"
 Settings="*res://scripts/globals/settings.gd"
 Refs="*res://scripts/globals/references.gd"
 Utils="*res://scripts/globals/utilities.gd"
+MessageSystem="*res://scripts/globals/message_system.gd"
 
 [display]
 

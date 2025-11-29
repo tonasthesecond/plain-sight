@@ -3,7 +3,7 @@ class_name Player
 
 signal died
 
-@export_enum("player1", "player2") var player_id: String = "player1"
+@export var player_id: int
 @onready var sprite: Sprite2D = $Sprite
 @onready var animation_component: AnimationComponent = $AnimationComponent
 @onready var attack_delay_timer: Timer = $AttackDelayTimer
@@ -49,7 +49,7 @@ func _physics_process(delta: float) -> void:
         previous_direction = move_state.movement_provider.get_movement_vector()
 
     # Attacking
-    if Input.is_action_just_pressed(player_id + "_attack") and attack_delay_timer.is_stopped():
+    if Input.is_action_just_pressed(Settings.PLAYER_STRING_IDS[player_id] + "_attack") and attack_delay_timer.is_stopped():
         attack_delay_timer.start()
         var weapon_instance = weapon.instantiate()
         weapon_instance.position = previous_direction * Vector2(8, 8)
@@ -57,5 +57,5 @@ func _physics_process(delta: float) -> void:
         add_child(weapon_instance)
 
 func _on_damage_area_component_damaged(_damager: Node2D) -> void:
-    print(player_id + " died")
+    print(Settings.PLAYER_NAMES[player_id] + " died")
     died.emit()

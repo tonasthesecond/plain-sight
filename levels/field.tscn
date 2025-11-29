@@ -47,6 +47,7 @@ normal = Vector2(-1, 0)
 [node name="Field" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_lal8a")
+initial_messages = Array[String](["This is sample text!", "This is a second sample text!"])
 
 [node name="SpawnManager" type="Node" parent="." node_paths=PackedStringArray("characters_container")]
 script = ExtResource("2_m8hg1")
@@ -101,5 +102,4 @@ script = ExtResource("10_lreka")
 metadata/_edit_lock_ = true
 
 [node name="MessageBar" parent="UI" instance=ExtResource("10_m8hg1")]
-queue = Array[String](["This is placeholder.", "Hey, this is still me!", "I'm still here!"])
 metadata/_edit_lock_ = true

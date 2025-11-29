@@ -59,3 +59,8 @@ func vector_direction_to_string(vector: Vector2) -> String:
         return "up"
     else:
         return ''
+
+func fade_node(node: Node, target: float, rate_per_sec: float = 1) -> Tween:
+    var opacity_tween = create_tween()
+    opacity_tween.tween_property(node, "modulate:a", target, 1.0 / rate_per_sec)
+    return opacity_tween
