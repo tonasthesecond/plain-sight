@@ -13,7 +13,7 @@ const AI_WALK_TIME_BOUNDS := Vector2(1.0, 2.0)
 const AI_WAIT_TIME_BOUNDS := Vector2(4.0, 6.0)
 
 # Information
-var PLAYER_NAMES: Array[String] = ["Player 1", "Player 2"]
+var PLAYER_NAMES: Array[String] = ["Bob", "Alice"]
 var PLAYER_STRING_IDS: Array[String] = ["player1", "player2"]
 
 # Alterable stats

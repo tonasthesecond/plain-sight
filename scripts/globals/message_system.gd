@@ -7,6 +7,7 @@ var is_ready: bool = false
 
 func _ready() -> void:
     await get_tree().process_frame
+    if not Refs.message_bar: return
     Refs.message_bar.message_shown.connect(on_message_shown)
     is_ready = true
     try_show_next()

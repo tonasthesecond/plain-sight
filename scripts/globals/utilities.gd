@@ -64,3 +64,13 @@ func fade_node(node: Node, target: float, rate_per_sec: float = 1) -> Tween:
     var opacity_tween = create_tween()
     opacity_tween.tween_property(node, "modulate:a", target, 1.0 / rate_per_sec)
     return opacity_tween
+
+func set_keyframe(anim_player: AnimationPlayer, anim_name: String, track: String, index: int, value: Variant) -> void:
+    var animation = anim_player.get_animation(anim_name)
+    var track_id = animation.find_track(track, Animation.TYPE_VALUE)
+
+    if track_id == -1: 
+        printerr("Animation %s does not have track %s" % [anim_name, track])
+        return
+
+    animation.track_set_key_value(track_id, index, value)

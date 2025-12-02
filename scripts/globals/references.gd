@@ -16,3 +16,4 @@ func _ready() -> void:
     level_node = get_tree().get_first_node_in_group("level")
     if not level_node: return
     message_bar = level_node.get_node("UI/MessageBar")
+

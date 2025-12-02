@@ -66,7 +66,13 @@ func _on_damage_area_component_damaged(_damager: Node2D) -> void:
     set_physics_process(false)
 
     animation_component.stop_animation()
-    animation_component.play_animation(["die_right", "die_left"][randi() % 2])
+    var anim_name: String = ["die_right", "die_left"][randi() % 2]
+    Utils.set_keyframe(
+        animation_component, "character_animations/" + anim_name, 
+        "Sprite:modulate", 0, 
+        sprite.modulate
+    )
+    animation_component.play_animation(anim_name)
     animation_component.animation_finished.connect(func(_anim_name): queue_free())
 
 func select_random_ai_type() -> AIType:

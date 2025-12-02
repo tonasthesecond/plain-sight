@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ch81l6u6bc3tg"]
 
 [ext_resource type="Script" uid="uid://c5ofkuqwb5sx6" path="res://components/weapons/weapon.gd" id="1_2p33p"]
-[ext_resource type="Texture2D" uid="uid://cs6x56chh1syx" path="res://assets/weapon/knife.png" id="2_l8l68"]
+[ext_resource type="Texture2D" uid="uid://cs6x56chh1syx" path="res://assets/weapons/knife.png" id="2_l8l68"]
 [ext_resource type="AnimationLibrary" uid="uid://fqfk0vmieoje" path="res://assets/animations/weapon_animations.res" id="3_glu2e"]
 [ext_resource type="Script" uid="uid://b88ojtwt7ji0o" path="res://components/animation_component.gd" id="4_otms4"]
 
